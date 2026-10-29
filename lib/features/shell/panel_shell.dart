@@ -135,8 +135,7 @@ class _Sidebar extends StatelessWidget {
             child: Center(
               child: SizedBox(
                 height: context.dvh(52, 12.6, 136),
-                width: context.dvh(34, 8.3, 90),
-                child: const AssetIcon('brand/admin-logo.png', fit: BoxFit.cover),
+                child: const AssetIcon('brand/admin-logo.png'),
               ),
             ),
           ),

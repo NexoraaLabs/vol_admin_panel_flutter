@@ -105,11 +105,10 @@ class AuthHeading extends StatelessWidget {
       children: [
         SizedBox(
           height: context.dvh(110, 14, 150),
-          width: context.dvh(73, 9.3, 100),
           child: Semantics(
             label: 'VÔL',
             image: true,
-            child: const AssetIcon('brand/admin-logo.png', fit: BoxFit.cover),
+            child: const AssetIcon('brand/admin-logo.png'),
           ),
         ),
         const SizedBox(height: 24),
