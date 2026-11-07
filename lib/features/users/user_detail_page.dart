@@ -26,8 +26,8 @@ const _outcomes = {
   ModerationAction.reinstate: ('Account reinstated', ToastTone.success),
 };
 
-const _cellStyle = TextStyle(fontSize: 14, fontWeight: FontWeight.w500, height: 16 / 14, letterSpacing: .28, color: Dak.body);
-const _nameStyle = TextStyle(fontSize: 16, letterSpacing: -.2, color: Dak.heading);
+TextStyle get _cellStyle => TextStyle(fontSize: 14, fontWeight: FontWeight.w500, height: 16 / 14, letterSpacing: .28, color: Dak.body);
+TextStyle get _nameStyle => TextStyle(fontSize: 16, letterSpacing: -.2, color: Dak.heading);
 
 const List<Track> _wsCols = [
   (min: 120, fr: 2.6),
@@ -119,7 +119,7 @@ class UserDetailPage extends ConsumerWidget {
                 children: [
                   Text(
                     user.name,
-                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600, letterSpacing: -.2, color: Dak.heading),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, letterSpacing: -.2, color: Dak.heading),
                   ),
                   const SizedBox(height: 8),
                   Text(user.email, style: _cellStyle),
@@ -130,7 +130,7 @@ class UserDetailPage extends ConsumerWidget {
                       StatusBadge(label: status, tone: accountStatusTone(status)),
                       if (user.reports > 0) ...[
                         const SizedBox(width: 12),
-                        Text('${user.reports} reports', style: const TextStyle(fontSize: 14, color: Adm.dangerText)),
+                        Text('${user.reports} reports', style: TextStyle(fontSize: 14, color: Adm.dangerText)),
                       ],
                     ],
                   ),
@@ -302,7 +302,7 @@ class _TableCard extends StatelessWidget {
                     if (empty != null)
                       Padding(
                         padding: EdgeInsets.only(top: rowGap),
-                        child: Text(empty!, style: const TextStyle(fontSize: 14, color: Dak.body)),
+                        child: Text(empty!, style: TextStyle(fontSize: 14, color: Dak.body)),
                       ),
                     for (final cells in rows)
                       Padding(

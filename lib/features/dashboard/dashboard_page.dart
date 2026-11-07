@@ -111,9 +111,9 @@ class DashboardPage extends ConsumerWidget {
                 : GrowthChart(
                     data: data.userGrowth,
                     defaultIndex: month,
-                    series: const [
-                      GrowthSeries(key: 'total', label: 'Total User', color: Color(0xFF9436FB), stroke: GrowthStroke.progress),
-                      GrowthSeries(key: 'active', label: 'Active User', color: Color(0xFF4285F4)),
+                    series: [
+                      GrowthSeries(key: 'total', label: 'Total User', color: Dak.cta, stroke: GrowthStroke.progress),
+                      GrowthSeries(key: 'active', label: 'Active User', color: Adm.blue),
                     ],
                   ),
           ),
@@ -125,14 +125,8 @@ class DashboardPage extends ConsumerWidget {
                 : GrowthChart(
                     data: data.businessGrowth,
                     defaultIndex: data.businessGrowth.isEmpty ? 0 : data.businessGrowth.length - 1,
-                    series: const [
-                      GrowthSeries(
-                        key: 'business',
-                        label: 'Business',
-                        color: Color(0xFF9436FB),
-                        accent: Color(0xFF23C54E),
-                        stroke: GrowthStroke.dashed,
-                      ),
+                    series: [
+                      GrowthSeries(key: 'business', label: 'Business', color: Dak.cta, accent: Adm.success, stroke: GrowthStroke.dashed),
                     ],
                   ),
           ),
@@ -164,7 +158,7 @@ class DashboardPage extends ConsumerWidget {
                           Expanded(
                             child: Text(
                               label,
-                              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500, letterSpacing: -.3, color: Dak.body),
+                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, letterSpacing: -.3, color: Dak.body),
                             ),
                           ),
                           const SizedBox(width: 16),

@@ -36,21 +36,21 @@ class AuthShell extends StatelessWidget {
                   if (context.isLg)
                     SizedBox(
                       width: w * .452,
-                      child: const Stack(
+                      child: Stack(
                         fit: StackFit.expand,
                         children: [
-                          AssetIcon('illustrations/auth-hero.png', fit: BoxFit.cover),
+                          const AssetIcon('illustrations/auth-hero.png', fit: BoxFit.cover),
                           DecoratedBox(
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
-                                begin: Alignment(.78, -.63),
-                                end: Alignment(-.78, .63),
-                                stops: [.0552, .9882],
-                                colors: [Color(0x289436FB), Color(0x339436FB)],
+                                begin: const Alignment(.78, -.63),
+                                end: const Alignment(-.78, .63),
+                                stops: const [.0552, .9882],
+                                colors: [Dak.cta.withValues(alpha: .16), Dak.cta.withValues(alpha: .2)],
                               ),
                             ),
                           ),
-                          DecoratedBox(
+                          const DecoratedBox(
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
                                 begin: Alignment(-.46, -.89),
@@ -105,11 +105,7 @@ class AuthHeading extends StatelessWidget {
       children: [
         SizedBox(
           height: context.dvh(110, 14, 150),
-          child: Semantics(
-            label: 'VÔL',
-            image: true,
-            child: const AssetIcon('brand/admin-logo.png'),
-          ),
+          child: Semantics(label: 'VÔL', image: true, child: const AssetIcon('brand/admin-logo.png')),
         ),
         const SizedBox(height: 24),
         ConstrainedBox(
@@ -127,7 +123,7 @@ class AuthHeading extends StatelessWidget {
                 Text.rich(
                   TextSpan(children: body),
                   textAlign: TextAlign.center,
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, height: 23 / 16, color: Dak.body),
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, height: 23 / 16, color: Dak.body),
                 ),
               ],
             ),
@@ -160,7 +156,7 @@ class AuthButton extends StatelessWidget {
             decoration: BoxDecoration(
               color: Dak.cta,
               borderRadius: BorderRadius.circular(16),
-              boxShadow: const [BoxShadow(color: Color(0x669436FB), offset: Offset(0, 8), blurRadius: 6)],
+              boxShadow: [BoxShadow(color: Dak.cta.withValues(alpha: .4), offset: const Offset(0, 8), blurRadius: 6)],
             ),
             child: Text(
               label,

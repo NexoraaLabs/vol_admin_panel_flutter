@@ -7,6 +7,7 @@ import '../../core/query.dart';
 import '../../models/admin.dart';
 import '../../theme/tokens.dart';
 import '../../ui/asset_icon.dart';
+import '../../ui/color_theme_menu.dart';
 import '../../ui/layout.dart';
 import '../../ui/modals.dart';
 import '../../ui/widgets.dart';
@@ -121,10 +122,10 @@ class _Sidebar extends StatelessWidget {
     final activeH = context.dvh(40, 5.2, 56);
 
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: Adm.sidebar,
         border: Border(right: BorderSide(color: Adm.sidebarLine)),
-        boxShadow: [BoxShadow(color: Color(0x809436FB), offset: Offset(0, 64), blurRadius: 64, spreadRadius: -32)],
+        boxShadow: [BoxShadow(color: Dak.cta.withValues(alpha: .5), offset: const Offset(0, 64), blurRadius: 64, spreadRadius: -32)],
       ),
       child: Column(
         children: [
@@ -133,10 +134,7 @@ class _Sidebar extends StatelessWidget {
           SizedBox(
             height: context.dvh(56, 13.15, 142),
             child: Center(
-              child: SizedBox(
-                height: context.dvh(52, 12.6, 136),
-                child: const AssetIcon('brand/admin-logo.png'),
-              ),
+              child: SizedBox(height: context.dvh(52, 12.6, 136), child: const AssetIcon('brand/admin-logo.png')),
             ),
           ),
           SizedBox(height: context.dvh(12, 2.78, 30)),
@@ -226,11 +224,11 @@ class _NavLink extends StatelessWidget {
           decoration: BoxDecoration(
             color: !active && hovered ? Colors.white.withValues(alpha: .05) : null,
             gradient: active
-                ? const LinearGradient(
-                    begin: Alignment(-.98, -.22),
-                    end: Alignment(.98, .22),
-                    stops: [.0057, 1],
-                    colors: [Color(0xFF9436FB), Color(0xFF582095)],
+                ? LinearGradient(
+                    begin: const Alignment(-.98, -.22),
+                    end: const Alignment(.98, .22),
+                    stops: const [.0057, 1],
+                    colors: [Dak.cta, Dak.ctaDeep],
                   )
                 : null,
             borderRadius: BorderRadius.circular(8),
@@ -335,6 +333,8 @@ class _TopNavState extends ConsumerState<_TopNav> {
               ),
             ),
           ),
+          const SizedBox(width: 12),
+          const ColorThemeMenu(),
           const SizedBox(width: 12),
           Tooltip(
             message: waiting > 0 ? '$waiting open cases' : 'Cases',

@@ -66,11 +66,11 @@ class SecurityPage extends ConsumerWidget {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(label, style: const TextStyle(fontSize: 14, color: Dak.body)),
+                      Text(label, style: TextStyle(fontSize: 14, color: Dak.body)),
                       const SizedBox(height: 8),
                       Text(
                         '$value',
-                        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w500, color: Dak.heading),
+                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500, color: Dak.heading),
                       ),
                     ],
                   ),
@@ -107,10 +107,7 @@ class SecurityPage extends ConsumerWidget {
                           AdmToggle(label: p.label, value: p.value, onChanged: (v) => toggle(p, v)),
                         ],
                       ),
-                      if (p.hint != null) ...[
-                        const SizedBox(height: 10),
-                        Text(p.hint!, style: const TextStyle(fontSize: 16, color: Dak.muted)),
-                      ],
+                      if (p.hint != null) ...[const SizedBox(height: 10), Text(p.hint!, style: TextStyle(fontSize: 16, color: Dak.muted))],
                     ],
                   ),
                 ),

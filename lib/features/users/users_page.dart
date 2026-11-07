@@ -41,7 +41,7 @@ const List<Track> _columns = [
   (min: 110, fr: 0),
 ];
 
-const _cellStyle = TextStyle(fontSize: 14, fontWeight: FontWeight.w500, height: 16 / 14, letterSpacing: .28, color: Dak.body);
+TextStyle get _cellStyle => TextStyle(fontSize: 14, fontWeight: FontWeight.w500, height: 16 / 14, letterSpacing: .28, color: Dak.body);
 
 /// User Management. [initialQuery] comes from the top bar's search (?q=); the router keys this
 /// page on it so a new search resets the local state.
@@ -111,7 +111,7 @@ class _UsersPageState extends ConsumerState<UsersPage> {
             ),
           ],
         ),
-        if (_exportError != null) Text(_exportError!, style: const TextStyle(fontSize: 14, color: Adm.danger)),
+        if (_exportError != null) Text(_exportError!, style: TextStyle(fontSize: 14, color: Adm.danger)),
         Gap(
           32,
           children: [
@@ -203,7 +203,7 @@ class _UsersPageState extends ConsumerState<UsersPage> {
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Text('Total Users:', style: _cellStyle),
+                        Text('Total Users:', style: _cellStyle),
                         const SizedBox(width: 8),
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -213,7 +213,7 @@ class _UsersPageState extends ConsumerState<UsersPage> {
                           ),
                           child: Text(
                             formatNumber(data?.total ?? 0),
-                            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, letterSpacing: -.2, color: Dak.muted),
+                            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, letterSpacing: -.2, color: Dak.muted),
                           ),
                         ),
                       ],
@@ -256,7 +256,7 @@ class _UserRow extends StatelessWidget {
                       user.name,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600, letterSpacing: -.2, color: Dak.heading),
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, letterSpacing: -.2, color: Dak.heading),
                     ),
                     const SizedBox(height: 8),
                     Text(user.email, maxLines: 1, overflow: TextOverflow.ellipsis, style: _cellStyle),

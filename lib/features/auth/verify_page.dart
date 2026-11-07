@@ -85,7 +85,7 @@ class _VerifyPageState extends ConsumerState<VerifyPage> {
             const TextSpan(text: 'Enter the 6-digit code we emailed to '),
             TextSpan(
               text: widget.email,
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Dak.heading),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Dak.heading),
             ),
           ],
         ),
@@ -102,7 +102,7 @@ class _VerifyPageState extends ConsumerState<VerifyPage> {
         color: Dak.surface,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: Dak.cta),
-        boxShadow: const [BoxShadow(color: Color(0x809436FB), blurRadius: 10)],
+        boxShadow: [BoxShadow(color: Dak.cta.withValues(alpha: .5), blurRadius: 10)],
       ),
       child: Stack(
         children: [
@@ -122,7 +122,7 @@ class _VerifyPageState extends ConsumerState<VerifyPage> {
                         color: Dak.cta,
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(color: const Color(0x33C6C6CD)),
-                        boxShadow: const [BoxShadow(color: Color(0x809436FB), offset: Offset(0, 4), blurRadius: 8)],
+                        boxShadow: [BoxShadow(color: Dak.cta.withValues(alpha: .5), offset: const Offset(0, 4), blurRadius: 8)],
                       ),
                       child: const AssetIcon('icons/mail-badge.png', width: 40, height: 40),
                     ),
@@ -155,7 +155,7 @@ class _VerifyPageState extends ConsumerState<VerifyPage> {
                             ],
                           ),
                           textAlign: TextAlign.center,
-                          style: const TextStyle(fontSize: 16, height: 1.5, color: Dak.body),
+                          style: TextStyle(fontSize: 16, height: 1.5, color: Dak.body),
                         ),
                       ),
                     ),
@@ -175,7 +175,7 @@ class _VerifyPageState extends ConsumerState<VerifyPage> {
                           const TextSpan(text: "Email delivery isn't set up yet. Your code is "),
                           TextSpan(
                             text: _devCode,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontFamily: 'monospace',
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
@@ -186,7 +186,7 @@ class _VerifyPageState extends ConsumerState<VerifyPage> {
                         ],
                       ),
                       textAlign: TextAlign.center,
-                      style: const TextStyle(fontSize: 14, color: Dak.body),
+                      style: TextStyle(fontSize: 14, color: Dak.body),
                     ),
                   ),
                   const SizedBox(height: 24),
@@ -197,7 +197,7 @@ class _VerifyPageState extends ConsumerState<VerifyPage> {
                   Text(
                     _error!,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: Adm.danger),
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: Adm.danger),
                   ),
                 ],
                 const SizedBox(height: 40),
@@ -212,16 +212,16 @@ class _VerifyPageState extends ConsumerState<VerifyPage> {
                     children: [
                       Text(
                         _resent ? 'A new code is on its way.' : "Didn't receive the email?",
-                        style: const TextStyle(fontSize: 14, height: 20 / 14, color: Dak.body),
+                        style: TextStyle(fontSize: 14, height: 20 / 14, color: Dak.body),
                       ),
                       const SizedBox(height: 8),
                       Pressable(
                         onTap: _resend,
-                        child: const Row(
+                        child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            AssetIcon('icons/refresh.svg', width: 9, height: 9),
-                            SizedBox(width: 4),
+                            const AssetIcon('icons/refresh.svg', width: 9, height: 9),
+                            const SizedBox(width: 4),
                             Text(
                               'Resend Email',
                               style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, letterSpacing: .28, color: Dak.heading),

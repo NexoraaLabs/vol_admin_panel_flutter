@@ -138,7 +138,7 @@ class _ShareDonutState extends State<ShareDonut> {
                       const SizedBox(width: 8),
                       Text(
                         d.name,
-                        style: const TextStyle(fontSize: 10, fontWeight: FontWeight.w500, letterSpacing: -.3, color: Dak.body),
+                        style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500, letterSpacing: -.3, color: Dak.body),
                       ),
                     ],
                   ),

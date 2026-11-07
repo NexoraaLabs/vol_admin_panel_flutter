@@ -21,7 +21,7 @@ const _filters = [
 
 const caseTone = {'OPEN': BadgeTone.success, 'IN_REVIEW': BadgeTone.warning, 'RESOLVED': BadgeTone.info, 'DISMISSED': BadgeTone.neutral};
 
-const _border = {'OPEN': Adm.success, 'IN_REVIEW': Adm.warning, 'RESOLVED': Adm.blue, 'DISMISSED': Dak.muted};
+Map<String, Color> get _border => {'OPEN': Adm.success, 'IN_REVIEW': Adm.warning, 'RESOLVED': Adm.blue, 'DISMISSED': Dak.muted};
 
 class CasesPage extends ConsumerStatefulWidget {
   const CasesPage({super.key});
@@ -68,7 +68,7 @@ class _CasesPageState extends ConsumerState<CasesPage> {
                     color: Dak.surface,
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(color: Dak.cta),
-                    boxShadow: const [BoxShadow(color: Color(0x409436FB), offset: Offset(0, 4), blurRadius: 4)],
+                    boxShadow: [BoxShadow(color: Dak.cta.withValues(alpha: .25), offset: const Offset(0, 4), blurRadius: 4)],
                   ),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -76,18 +76,12 @@ class _CasesPageState extends ConsumerState<CasesPage> {
                     children: [
                       Text(
                         label,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          height: 16 / 14,
-                          letterSpacing: .28,
-                          color: Dak.body,
-                        ),
+                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, height: 16 / 14, letterSpacing: .28, color: Dak.body),
                       ),
                       const SizedBox(height: 12),
                       Text(
                         pad2(value),
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.w500,
                           height: 24 / 28,
@@ -151,7 +145,7 @@ class _CasesPageState extends ConsumerState<CasesPage> {
                   weight: FontWeight.w600,
                   disabledOpacity: .4,
                 ),
-                Text('Page $_page of ${data.page.pages}', style: const TextStyle(fontSize: 14, color: Dak.body)),
+                Text('Page $_page of ${data.page.pages}', style: TextStyle(fontSize: 14, color: Dak.body)),
                 AdmButton(
                   label: 'Next',
                   onTap: _page < data.page.pages ? () => setState(() => _page++) : null,
@@ -176,7 +170,7 @@ class _CaseRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const small = TextStyle(fontSize: 14, fontWeight: FontWeight.w500, height: 16 / 14, letterSpacing: .28, color: Dak.body);
+    final small = TextStyle(fontSize: 14, fontWeight: FontWeight.w500, height: 16 / 14, letterSpacing: .28, color: Dak.body);
     final c = item;
     return Hover(
       builder: (context, hovered) => Pressable(
@@ -200,13 +194,7 @@ class _CaseRow extends StatelessWidget {
                     const SizedBox(height: 16),
                     Text(
                       c.title,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                        height: 24 / 18,
-                        letterSpacing: .28,
-                        color: Dak.heading,
-                      ),
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, height: 24 / 18, letterSpacing: .28, color: Dak.heading),
                     ),
                     const SizedBox(height: 16),
                     Text(

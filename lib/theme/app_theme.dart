@@ -6,7 +6,7 @@ import 'tokens.dart';
 // Widgets style themselves to match the web classes, so the theme only sets fonts and base colours.
 // Inter is the body font, as in apps/admin; Geist is applied where the web uses font-heading.
 ThemeData adminTheme() {
-  const colors = ColorScheme.dark(
+  final colors = ColorScheme.dark(
     primary: Dak.cta,
     onPrimary: Colors.white,
     surface: Dak.surface,
@@ -24,5 +24,5 @@ ThemeData adminTheme() {
 TextStyle heading(TextStyle style) => GoogleFonts.geist(textStyle: style);
 
 /// Small uppercase Geist title used by the Figma detail cards.
-TextStyle cardTitleStyle([Color color = Dak.heading]) =>
-    heading(TextStyle(fontSize: 14, fontWeight: FontWeight.w500, height: 16 / 14, letterSpacing: 1.4, color: color));
+TextStyle cardTitleStyle([Color? color]) =>
+    heading(TextStyle(fontSize: 14, fontWeight: FontWeight.w500, height: 16 / 14, letterSpacing: 1.4, color: color ?? Dak.heading));

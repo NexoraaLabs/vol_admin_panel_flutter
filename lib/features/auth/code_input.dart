@@ -96,7 +96,7 @@ class _CodeInputState extends State<CodeInput> {
                 onSubmitted: (_) => widget.onComplete?.call(),
                 expands: true,
                 maxLines: null,
-                style: const TextStyle(fontSize: 22, height: 24 / 22, color: Dak.heading),
+                style: TextStyle(fontSize: 22, height: 24 / 22, color: Dak.heading),
                 cursorColor: Dak.heading,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.zero,
@@ -106,7 +106,7 @@ class _CodeInputState extends State<CodeInput> {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(color: Dak.cta),
+                    borderSide: BorderSide(color: Dak.cta),
                   ),
                 ),
               ),
@@ -124,7 +124,7 @@ class _CodeInputState extends State<CodeInput> {
           if (i == 3) ...[
             SizedBox(
               width: context.dvw(12, 2, 40),
-              child: const Text(
+              child: Text(
                 '-',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, height: 1.5, color: Dak.heading),

@@ -6,6 +6,7 @@ import '../../charts/growth_chart.dart';
 import '../../charts/share_donut.dart';
 import '../../core/query.dart';
 import '../../models/admin.dart';
+import '../../theme/tokens.dart';
 import '../../ui/layout.dart';
 import '../../ui/widgets.dart';
 import '../dashboard/dashboard_page.dart';
@@ -14,7 +15,7 @@ import '../shell/panel_shell.dart';
 const _tabs = [ChipItem('growth', 'Growth'), ChipItem('engagement', 'Engagement'), ChipItem('composition', 'Composition')];
 
 // Donut colours from Figma 790:5518, extended for extra business segments.
-const _shareColors = [Color(0xFF4285F4), Color(0xFFFBBC05), Color(0xFF3BCC92), Color(0xFF9436FB), Color(0xFFEA4335)];
+List<Color> get _shareColors => Adm.series;
 
 class AnalyticsPage extends ConsumerStatefulWidget {
   const AnalyticsPage({super.key});
@@ -95,9 +96,9 @@ class _AnalyticsPageState extends ConsumerState<AnalyticsPage> {
                       key: ValueKey(_period),
                       data: data.growth,
                       defaultIndex: _period == 'yearly' ? now.month - 1 : now.day - 1,
-                      series: const [
-                        GrowthSeries(key: 'total', label: 'Total User', color: Color(0xFF9436FB), stroke: GrowthStroke.progress),
-                        GrowthSeries(key: 'active', label: 'Active User', color: Color(0xFF4285F4)),
+                      series: [
+                        GrowthSeries(key: 'total', label: 'Total User', color: Dak.cta, stroke: GrowthStroke.progress),
+                        GrowthSeries(key: 'active', label: 'Active User', color: Adm.blue),
                       ],
                     ),
             ),

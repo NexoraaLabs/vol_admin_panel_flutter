@@ -104,7 +104,7 @@ class _GrowthChartState extends State<GrowthChart> {
                       bounds: size,
                       tooltip: ChartTooltip(
                         children: [
-                          Text(point.label, style: const TextStyle(color: Dak.heading)),
+                          Text(point.label, style: TextStyle(color: Dak.heading)),
                           for (final s in widget.series)
                             Text('${s.label}: ${plainNumber(point[s.key])}', style: TextStyle(color: s.accent ?? s.color)),
                         ],

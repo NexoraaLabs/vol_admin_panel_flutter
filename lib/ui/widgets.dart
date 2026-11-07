@@ -62,7 +62,7 @@ class AdmButton extends StatelessWidget {
     this.iconSize = 18,
     this.fill,
     this.border,
-    this.color = Dak.heading,
+    this.color,
     this.height = 48,
     this.width,
     this.radius = 28,
@@ -81,7 +81,7 @@ class AdmButton extends StatelessWidget {
   final double iconSize;
   final Color? fill;
   final Color? border;
-  final Color color;
+  final Color? color;
   final double height;
   final double? width;
   final double radius;
@@ -116,7 +116,9 @@ class AdmButton extends StatelessWidget {
               if (icon != null) ...[AssetIcon(icon!, width: iconSize, height: iconSize), const SizedBox(width: 8)],
               Text(
                 label,
-                style: textStyle ?? TextStyle(fontSize: fontSize, fontWeight: weight, letterSpacing: letterSpacing, color: color),
+                style:
+                    textStyle ??
+                    TextStyle(fontSize: fontSize, fontWeight: weight, letterSpacing: letterSpacing, color: color ?? Dak.heading),
               ),
             ],
           ),
@@ -134,7 +136,7 @@ class AdmField extends StatelessWidget {
     this.hint,
     this.height = 40,
     this.radius = 12,
-    this.borderColor = Adm.inputBorder,
+    this.borderColor,
     this.borderWidth = .5,
     this.fill,
     this.padLeft = 16,
@@ -149,9 +151,9 @@ class AdmField extends StatelessWidget {
     this.textAlign = TextAlign.start,
     this.autofocus = false,
     this.focusNode,
-    this.hintColor = Adm.placeholder,
+    this.hintColor,
     this.fontSize = 16,
-    this.textColor = Dak.heading,
+    this.textColor,
     this.lineHeight,
     this.semanticLabel,
   });
@@ -160,7 +162,7 @@ class AdmField extends StatelessWidget {
   final String? hint;
   final double? height;
   final double radius;
-  final Color borderColor;
+  final Color? borderColor;
   final double borderWidth;
   final Color? fill;
   final double padLeft;
@@ -175,9 +177,9 @@ class AdmField extends StatelessWidget {
   final TextAlign textAlign;
   final bool autofocus;
   final FocusNode? focusNode;
-  final Color hintColor;
+  final Color? hintColor;
   final double fontSize;
-  final Color textColor;
+  final Color? textColor;
   final double? lineHeight;
   final String? semanticLabel;
 
@@ -208,20 +210,20 @@ class AdmField extends StatelessWidget {
       expands: expand,
       onChanged: onChanged,
       onSubmitted: onSubmitted,
-      style: TextStyle(fontSize: fontSize, color: textColor, height: line),
+      style: TextStyle(fontSize: fontSize, color: textColor ?? Dak.heading, height: line),
       cursorColor: Dak.heading,
       decoration: InputDecoration(
         isDense: true,
         hintText: hint,
-        hintStyle: TextStyle(fontSize: fontSize, color: hintColor, height: line),
+        hintStyle: TextStyle(fontSize: fontSize, color: hintColor ?? Adm.placeholder, height: line),
         filled: fill != null,
         fillColor: fill,
         prefixIcon: prefix,
         prefixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
         contentPadding: EdgeInsets.fromLTRB(prefix == null ? padLeft : 0, padY, padRight, padY),
-        enabledBorder: outline(borderColor),
+        enabledBorder: outline(borderColor ?? Adm.inputBorder),
         focusedBorder: outline(Dak.cta),
-        border: outline(borderColor),
+        border: outline(borderColor ?? Adm.inputBorder),
       ),
     );
     final sized = height == null ? field : SizedBox(height: height, child: field);
@@ -241,7 +243,7 @@ class PageHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const bodyStyle = TextStyle(fontSize: 16, height: 1.5, color: Dak.body);
+    final bodyStyle = TextStyle(fontSize: 16, height: 1.5, color: Dak.body);
     return Wrap(
       spacing: 16,
       runSpacing: 16,
@@ -306,7 +308,7 @@ class StatCard extends StatelessWidget {
         color: Dak.surface,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(color: Dak.cta),
-        boxShadow: const [BoxShadow(color: Color(0x409436FB), offset: Offset(0, 4), blurRadius: 4)],
+        boxShadow: [BoxShadow(color: Dak.cta.withValues(alpha: .25), offset: const Offset(0, 4), blurRadius: 4)],
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -335,7 +337,7 @@ class StatCard extends StatelessWidget {
           const SizedBox(height: 12),
           Text(
             stat.value,
-            style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w500, height: 24 / 28, letterSpacing: .28, color: Dak.heading),
+            style: TextStyle(fontSize: 28, fontWeight: FontWeight.w500, height: 24 / 28, letterSpacing: .28, color: Dak.heading),
           ),
           const SizedBox(height: 12),
           Text(
@@ -386,15 +388,19 @@ class _PulseBoxState extends State<PulseBox> with SingleTickerProviderStateMixin
 }
 
 enum BadgeTone {
-  success(Adm.success),
-  warning(Adm.warning),
-  danger(Adm.danger),
-  info(Adm.blue),
-  neutral(Dak.muted);
+  success,
+  warning,
+  danger,
+  info,
+  neutral;
 
-  const BadgeTone(this.color);
-
-  final Color color;
+  Color get color => switch (this) {
+    success => Adm.success,
+    warning => Adm.warning,
+    danger => Adm.danger,
+    info => Adm.blue,
+    neutral => Dak.muted,
+  };
 }
 
 BadgeTone accountStatusTone(String label) => switch (label) {
@@ -576,7 +582,7 @@ class DetailRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final hasValue = value != null || child != null;
-    const valueStyle = TextStyle(fontSize: 14, height: 20 / 14, fontWeight: FontWeight.w500, color: Dak.heading);
+    final valueStyle = TextStyle(fontSize: 14, height: 20 / 14, fontWeight: FontWeight.w500, color: Dak.heading);
     return Container(
       padding: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
@@ -587,7 +593,7 @@ class DetailRow extends StatelessWidget {
           Expanded(
             child: Text(
               label,
-              style: hasValue ? const TextStyle(fontSize: 14, height: 20 / 14, color: Dak.body) : valueStyle,
+              style: hasValue ? TextStyle(fontSize: 14, height: 20 / 14, color: Dak.body) : valueStyle,
             ),
           ),
           if (hasValue) ...[
@@ -639,18 +645,18 @@ class Panel extends StatelessWidget {
                     children: [
                       Text(
                         title,
-                        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600, letterSpacing: -.2, color: Dak.heading),
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, letterSpacing: -.2, color: Dak.heading),
                       ),
                       if (subtitle != null) ...[
                         const SizedBox(height: 8),
-                        Text(subtitle!, style: const TextStyle(fontSize: 16, letterSpacing: -.2, color: Dak.muted)),
+                        Text(subtitle!, style: TextStyle(fontSize: 16, letterSpacing: -.2, color: Dak.muted)),
                       ],
                     ],
                   ),
                 ),
                 if (period != null) ...[
                   const SizedBox(width: 16),
-                  Text(period!, style: const TextStyle(fontSize: 14, letterSpacing: -.3, color: Dak.heading)),
+                  Text(period!, style: TextStyle(fontSize: 14, letterSpacing: -.3, color: Dak.heading)),
                   const SizedBox(width: 4),
                   const AssetIcon('icons/chevron-down.svg', width: 14, height: 14),
                 ],
@@ -681,8 +687,8 @@ class BackLink extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Transform.flip(flipX: true, child: const AssetIcon('icons/arrow-right.svg', width: 24, height: 24)),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Text(
                 'Back',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, height: 1.5, color: Dak.heading),

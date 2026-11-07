@@ -121,7 +121,7 @@ class _PolicyEditorState extends ConsumerState<PolicyEditor> {
             child: draft == null
                 ? Text(
                     data?.content ?? (async.hasError ? 'No published version yet — click Edit to write the first one.' : 'Loading…'),
-                    style: const TextStyle(fontSize: 16, height: 31 / 16, color: Dak.body),
+                    style: TextStyle(fontSize: 16, height: 31 / 16, color: Dak.body),
                   )
                 : ConstrainedBox(
                     constraints: const BoxConstraints(minHeight: 480),

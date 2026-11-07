@@ -67,7 +67,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    const label = TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Dak.heading);
+    final label = TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Dak.heading);
     return AuthShell(
       children: [
         const AuthHeading(
@@ -78,7 +78,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Text('Email', style: label),
+              Text('Email', style: label),
               const SizedBox(height: 16),
               AdmField(
                 controller: _email,
@@ -97,7 +97,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 onSubmitted: (_) => _submit(),
               ),
               const SizedBox(height: 40),
-              const Text('Password', style: label),
+              Text('Password', style: label),
               const SizedBox(height: 16),
               AdmField(
                 controller: _password,
@@ -116,7 +116,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 const SizedBox(height: 16),
                 Text(
                   _error!,
-                  style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: Adm.danger),
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: Adm.danger),
                 ),
               ],
               const SizedBox(height: 40),

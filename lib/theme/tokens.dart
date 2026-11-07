@@ -1,38 +1,56 @@
 import 'package:flutter/painting.dart';
 
-// Copied from packages/ui/src/tokens.css and apps/admin/src/app/globals.css. Keep the names in sync.
+import 'palette.dart';
+
+// Names copied from packages/ui/src/tokens.css and apps/admin/src/app/globals.css. Keep them in sync.
+// Values come from the active colour theme, see palette.dart and color_theme.dart.
+Palette _p = ColorTheme.standard.palette;
+
+void usePalette(Palette palette) => _p = palette;
+
 abstract final class Dak {
-  static const bg = Color(0xFF050505);
-  static const heading = Color(0xFFF4F4F6);
-  static const body = Color(0xFFC8CBD0);
-  static const cta = Color(0xFF9436FB);
-  static const muted = Color(0xFF777A82);
-  static const line = Color(0xFFC793FF);
-  static const surface = Color(0xFF121212);
-  static const border = Color(0xFF2B2B31);
+  static Color get bg => _p.bg;
+  static Color get heading => _p.heading;
+  static Color get body => _p.body;
+  static Color get cta => _p.cta;
+  static Color get ctaDeep => _p.ctaDeep;
+  static Color get muted => _p.muted;
+  static Color get line => _p.line;
+  static Color get surface => _p.surface;
+  static Color get border => _p.border;
 }
 
 // The admin panel is dark-only, so these have no light counterparts.
 abstract final class Adm {
-  static const sidebar = Color(0xFF0F090C);
-  static const sidebarLine = Color(0xFFC793FF);
-  static const logout = Color(0xFF1D1D20);
-  static const logoutBorder = Color(0xFFB86E9F);
-  static const inputBorder = Color(0xFF636365);
-  static const placeholder = Color(0xFFCECECE);
-  static const tooltip = Color(0xFF2B2B2B);
-  static const tooltipBorder = Color(0xFFB4B4B4);
-  static const success = Color(0xFF23C54E);
-  static const warning = Color(0xFFFBBC05);
-  static const danger = Color(0xFFE5252E);
-  static const dangerText = Color(0xFFC5221F);
-  static const dangerDark = Color(0xFFA5121A);
-  static const chipBorder = Color(0xFFD9D9D9);
-  static const blue = Color(0xFF4285F4);
+  static Color get sidebar => _p.sidebar;
+  static Color get sidebarLine => _p.sidebarLine;
+  static Color get logout => _p.logout;
+  static Color get logoutBorder => _p.logoutBorder;
+  static Color get inputBorder => _p.inputBorder;
+  static Color get placeholder => _p.placeholder;
+  static Color get tooltip => _p.tooltip;
+  static Color get tooltipBorder => _p.tooltipBorder;
+  static Color get success => _p.success;
+  static Color get warning => _p.warning;
+  static Color get danger => _p.danger;
+  static Color get dangerText => _p.dangerText;
+  static Color get dangerDark => _p.dangerDark;
+  static Color get chipBorder => _p.chipBorder;
+  static Color get blue => _p.blue;
+
+  // Opaque status tints for toasts and badges.
+  static Color get successFill => _p.successFill;
+  static Color get warningFill => _p.warningFill;
+  static Color get dangerFill => _p.dangerFill;
+  static Color get infoFill => _p.infoFill;
+
+  static List<Color> get activity => _p.activity;
+  static List<Color> get activityTips => _p.activityTips ?? _p.activity;
+  static List<Color> get series => _p.series;
 
   // Hard-coded hex values the admin screens use directly.
-  static const searchFill = Color(0xFF0B0F19);
-  static const slate = Color(0xFF31384A);
-  static const policyRow = Color(0xFF111520);
-  static const rowHover = Color(0xFF161616);
+  static Color get searchFill => _p.searchFill;
+  static Color get slate => _p.slate;
+  static Color get policyRow => _p.policyRow;
+  static Color get rowHover => _p.rowHover;
 }

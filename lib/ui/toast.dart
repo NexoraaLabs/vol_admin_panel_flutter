@@ -10,15 +10,24 @@ import 'widgets.dart';
 
 // The tinted fills are Figma's 15% tones flattened onto the black page so the toast stays opaque.
 enum ToastTone {
-  warning(Adm.warning, Color(0xFF2A2306)),
-  danger(Adm.danger, Color(0xFF2A0D0E)),
-  info(Adm.blue, Color(0xFF0D1A2F)),
-  success(Adm.success, Color(0xFF0A2312));
+  warning,
+  danger,
+  info,
+  success;
 
-  const ToastTone(this.color, this.fill);
+  Color get color => switch (this) {
+    warning => Adm.warning,
+    danger => Adm.danger,
+    info => Adm.blue,
+    success => Adm.success,
+  };
 
-  final Color color;
-  final Color fill;
+  Color get fill => switch (this) {
+    warning => Adm.warningFill,
+    danger => Adm.dangerFill,
+    info => Adm.infoFill,
+    success => Adm.successFill,
+  };
 }
 
 class ToastData {
@@ -118,12 +127,12 @@ class _Toast extends StatelessWidget {
                       children: [
                         Text(
                           toast.title,
-                          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600, height: 32 / 18, color: Dak.heading),
+                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, height: 32 / 18, color: Dak.heading),
                         ),
                         const SizedBox(height: 4),
                         Text(
                           toast.message,
-                          style: const TextStyle(fontSize: 14, height: 20 / 14, color: Dak.body),
+                          style: TextStyle(fontSize: 14, height: 20 / 14, color: Dak.body),
                         ),
                       ],
                     ),

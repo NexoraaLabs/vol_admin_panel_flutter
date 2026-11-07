@@ -6,14 +6,16 @@ import '../models/admin.dart';
 import '../theme/tokens.dart';
 import 'chart_theme.dart';
 
-// Bar and tooltip colours from Figma node 742:7. The tooltip shows classrooms in green even though
-// the bar itself is #3bcc92, exactly as designed.
-const _bars = [
-  (key: 'workspaces', label: 'Workspaces', color: Color(0xFF3C6EF7), tip: Color(0xFF3C6EF7)),
-  (key: 'canvases', label: 'Canvases', color: Color(0xFF00B5E7), tip: Color(0xFF00B5E7)),
-  (key: 'classrooms', label: 'Classrooms', color: Color(0xFF3BCC92), tip: Color(0xFF23C54E)),
-  (key: 'catalog', label: 'Catalog', color: Color(0xFFE0BC4B), tip: Color(0xFFE0BC4B)),
-];
+// Bar and tooltip colours from Figma node 742:7, swapped per colour theme.
+List<({String key, String label, Color color, Color tip})> get _bars {
+  final (bar, tip) = (Adm.activity, Adm.activityTips);
+  return [
+    (key: 'workspaces', label: 'Workspaces', color: bar[0], tip: tip[0]),
+    (key: 'canvases', label: 'Canvases', color: bar[1], tip: tip[1]),
+    (key: 'classrooms', label: 'Classrooms', color: bar[2], tip: tip[2]),
+    (key: 'catalog', label: 'Catalog', color: bar[3], tip: tip[3]),
+  ];
+}
 
 const _yAxisWidth = 27.0;
 const _top = 8.0;
@@ -76,7 +78,7 @@ class _ActivityChartState extends State<ActivityChart> {
                       tooltip: ChartTooltip(
                         compact: true,
                         children: [
-                          Text(data[hovered].label.replaceAll('WEEK', 'Week'), style: const TextStyle(fontSize: 12, color: Dak.heading)),
+                          Text(data[hovered].label.replaceAll('WEEK', 'Week'), style: TextStyle(fontSize: 12, color: Dak.heading)),
                           for (final b in _bars) Text('${b.label}: ${data[hovered][b.key]}', style: TextStyle(fontSize: 10, color: b.tip)),
                         ],
                       ),
@@ -92,13 +94,15 @@ class _ActivityChartState extends State<ActivityChart> {
 }
 
 class _BarsPainter extends CustomPainter {
-  _BarsPainter({required this.data, required this.max, required this.plot, required this.band, required this.hovered});
+  _BarsPainter({required this.data, required this.max, required this.plot, required this.band, required this.hovered})
+    : colors = Adm.activity;
 
   final List<ChartPoint> data;
   final num max;
   final Rect plot;
   final double band;
   final int? hovered;
+  final List<Color> colors;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -132,11 +136,11 @@ class _BarsPainter extends CustomPainter {
         final h = plot.height * (value / max).clamp(0, 1);
         final rect = Rect.fromLTWH(left + j * (barWidth + _barGap), plot.bottom - h, barWidth, h);
         final r = Radius.circular(math.min(8, math.min(barWidth / 2, h)));
-        canvas.drawRRect(RRect.fromRectAndCorners(rect, topLeft: r, topRight: r), Paint()..color = _bars[j].color);
+        canvas.drawRRect(RRect.fromRectAndCorners(rect, topLeft: r, topRight: r), Paint()..color = colors[j]);
       }
     }
   }
 
   @override
-  bool shouldRepaint(_BarsPainter old) => old.data != data || old.hovered != hovered || old.plot != plot;
+  bool shouldRepaint(_BarsPainter old) => old.data != data || old.hovered != hovered || old.plot != plot || old.colors != colors;
 }

@@ -120,7 +120,7 @@ class _SettingsCard extends StatelessWidget {
                           Expanded(
                             child: Text(
                               field.label,
-                              style: const TextStyle(fontSize: 14, height: 20 / 14, color: Dak.body),
+                              style: TextStyle(fontSize: 14, height: 20 / 14, color: Dak.body),
                             ),
                           ),
                           const SizedBox(width: 16),
@@ -241,7 +241,7 @@ class _Select extends StatelessWidget {
           dropdownColor: Dak.surface,
           borderRadius: BorderRadius.circular(12),
           focusColor: Colors.transparent,
-          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500, height: 20 / 14, color: Dak.heading),
+          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, height: 20 / 14, color: Dak.heading),
           icon: Padding(
             padding: const EdgeInsets.only(left: 8),
             child: Transform.rotate(angle: -math.pi / 2, child: const AssetIcon('icons/select-chevron.svg', width: 18, height: 18)),

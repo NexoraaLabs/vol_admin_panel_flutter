@@ -29,7 +29,7 @@ class ActionCopy {
 enum ModerationAction { suspend, ban, delete, warn, dismiss, reinstate }
 
 // Per Figma's Composer Modal frames (789:4313, 789:4603, 789:4637, 801:9574, 801:9548).
-const moderationCopy = {
+Map<ModerationAction, ActionCopy> get moderationCopy => {
   ModerationAction.suspend: ActionCopy(
     title: 'Suspend this account?',
     description: 'The user loses access to workspaces, classrooms and community until restored.',
@@ -106,8 +106,8 @@ class _ActionModalState extends State<_ActionModal> {
   @override
   Widget build(BuildContext context) {
     final copy = widget.copy;
-    const label = TextStyle(fontSize: 14, fontWeight: FontWeight.w500, height: 16 / 14, letterSpacing: .28, color: Dak.body);
-    final buttonText = heading(const TextStyle(fontSize: 14, fontWeight: FontWeight.w500, letterSpacing: .28, color: Dak.heading));
+    final label = TextStyle(fontSize: 14, fontWeight: FontWeight.w500, height: 16 / 14, letterSpacing: .28, color: Dak.body);
+    final buttonText = heading(TextStyle(fontSize: 14, fontWeight: FontWeight.w500, letterSpacing: .28, color: Dak.heading));
 
     return Dialog(
       insetPadding: const EdgeInsets.all(16),
@@ -150,7 +150,7 @@ class _ActionModalState extends State<_ActionModal> {
                           const SizedBox(height: 4),
                           Text(
                             copy.description,
-                            style: const TextStyle(fontSize: 14, height: 20 / 14, color: Dak.body),
+                            style: TextStyle(fontSize: 14, height: 20 / 14, color: Dak.body),
                           ),
                         ],
                       ),
@@ -180,7 +180,7 @@ class _ActionModalState extends State<_ActionModal> {
                           child: Gap(
                             8,
                             children: [
-                              const Text('Reason (recorded in audit log)', style: label),
+                              Text('Reason (recorded in audit log)', style: label),
                               AdmField(
                                 controller: _reason,
                                 hint: 'Type here...',
@@ -211,7 +211,7 @@ class _ActionModalState extends State<_ActionModal> {
                                       const TextSpan(text: 'Type '),
                                       TextSpan(
                                         text: copy.confirmWord,
-                                        style: const TextStyle(color: Adm.danger),
+                                        style: TextStyle(color: Adm.danger),
                                       ),
                                       const TextSpan(text: ' to continue'),
                                     ],
@@ -254,7 +254,7 @@ class _ActionModalState extends State<_ActionModal> {
                           radius: 16,
                           border: Dak.heading,
                           textStyle: buttonText.copyWith(color: Colors.white),
-                          shadow: const [BoxShadow(color: Color(0x669436FB), offset: Offset(0, 8), blurRadius: 12)],
+                          shadow: [BoxShadow(color: Dak.cta.withValues(alpha: .4), offset: const Offset(0, 8), blurRadius: 12)],
                         ),
                       ),
                     ),
@@ -329,8 +329,10 @@ class _SignOutModal extends StatelessWidget {
                       bottom: 256 - 193.5 - 185,
                       width: 370,
                       height: 370,
-                      child: const DecoratedBox(
-                        decoration: BoxDecoration(gradient: RadialGradient(colors: [Color(0x66C793FF), Color(0x00C793FF)])),
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          gradient: RadialGradient(colors: [Dak.line.withValues(alpha: .4), Dak.line.withValues(alpha: 0)]),
+                        ),
                       ),
                     ),
                     Padding(
@@ -338,12 +340,12 @@ class _SignOutModal extends StatelessWidget {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const Text(
+                          Text(
                             'Sign Out',
                             style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600, color: Dak.heading),
                           ),
                           const SizedBox(height: 16),
-                          const SizedBox(
+                          SizedBox(
                             width: 245,
                             child: Text(
                               'Are you sure you want to logout of your account?',
@@ -393,7 +395,7 @@ class _SignOutModal extends StatelessWidget {
                   width: 100,
                   height: 100,
                   padding: const EdgeInsets.only(left: 10, right: 15),
-                  decoration: const BoxDecoration(color: Dak.surface, shape: BoxShape.circle),
+                  decoration: BoxDecoration(color: Dak.surface, shape: BoxShape.circle),
                   child: const Center(child: AssetIcon('icons/logout-lg.svg', width: 46, height: 46)),
                 ),
               ),

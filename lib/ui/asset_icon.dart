@@ -56,7 +56,7 @@ class Avatar extends StatelessWidget {
       height: size,
       clipBehavior: Clip.antiAlias,
       alignment: Alignment.center,
-      decoration: const BoxDecoration(color: Dak.cta, shape: BoxShape.circle),
+      decoration: BoxDecoration(color: Dak.cta, shape: BoxShape.circle),
       child: content,
     );
   }
